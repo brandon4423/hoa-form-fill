@@ -1,13 +1,14 @@
 import gspread
 from docxtpl import DocxTemplate
 from docx2pdf import convert
-import time
 import os
 
 login = gspread.service_account(filename="Service\service_account.json")
 sheet_name = login.open("HOA")
 
 tab_lookup = sheet_name.worksheet("Maya")
+
+user = os.getlogin()
 
 def acc():
     sunrise_id = str(tab_lookup.acell("H2").value)
@@ -29,7 +30,6 @@ def acc():
         choose_again()
 
 def black_hawk():
-    os.getcwd()
 
     date = str(tab_lookup.acell("H7").value)
     name = str(tab_lookup.acell("D7").value)
@@ -44,15 +44,13 @@ def black_hawk():
                'zip_code': zip_code}
 
     doc.render(context)
-    os.chdir(r"C:\\Users" + "\\" + os.getlogin() + "\\Downloads")
+    os.chdir(r"C:\\Users" + "\\" + user + "\\Downloads")
     doc.save(f"{name} Black Hawk.docx")
 
     convert(f"{name} Black Hawk.docx", f"{name} Black Hawk.pdf")
 
     os.remove(f"{name} Black Hawk.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def pamco():
     os.getcwd()
@@ -68,15 +66,13 @@ def pamco():
                'email': email, 'address': address}
 
     doc.render(context)
-    os.chdir(r"C:\\Users" + "\\" + os.getlogin() + "\\Downloads")
+    os.chdir(r"C:\\Users" + "\\" + user + "\\Downloads")
     doc.save(f"{name} Pamco.docx")
 
     convert(f"{name} Pamco.docx", f"{name} Pamco.pdf")
 
     os.remove(f"{name} Pamco.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def steiner():
     os.getcwd()
@@ -92,15 +88,13 @@ def steiner():
                'phone': phone, 'email': email, 'address': address}
 
     doc.render(context)
-    os.chdir(r"C:\\Users" + "\\" + os.getlogin() + "\\Downloads")
+    os.chdir(r"C:\\Users" + "\\" + user + "\\Downloads")
     doc.save(f"Steiner.docx")
 
     convert(f"{name} Steiner.docx", f"{name} Steiner.pdf")
     
     os.remove(f"{name} Steiner.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def sun_city():
     os.getcwd()
@@ -118,15 +112,13 @@ def sun_city():
                'initial': initial}
 
     doc.render(context)
-    os.chdir(r"C:\\Users" + "\\" + os.getlogin() + "\\Downloads")
+    os.chdir(r"C:\\Users" + "\\" + user + "\\Downloads")
     doc.save(f"{name} Sun City.docx")
 
     convert(f"{name} Sun City.docx", f"{name} Sun City.pdf")
 
     os.remove(f"{name} Sun City.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def choose_again():
     print(f" \n\n Invalid input, please copy and paste or enter exactly \n\n")

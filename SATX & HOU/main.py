@@ -1,13 +1,14 @@
 import gspread
 from docxtpl import DocxTemplate
 from docx2pdf import convert
-import time
 import os
 
 login = gspread.service_account(filename="Service\service_account.json")
 sheet_name = login.open("HOA")
 
 tab_lookup = sheet_name.worksheet("SEARCH_TOOL")
+
+user = os.getlogin()
 
 def acc():
     sunrise_id = str(tab_lookup.acell("H2").value)
@@ -57,12 +58,12 @@ def acmi():
     phone = str(tab_lookup.acell("F2").value)
     email = str(tab_lookup.acell("E2").value)
 
-    doc = DocxTemplate(r"Forms\acmi.docx")
+    doc = DocxTemplate(r"Forms\\acmi.docx")
     context = {'hoa_name': hoa_name, 'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\Users" + "\\" + user + "\\Downloads")
     doc.save(f"{name} Acmi.docx")
 
     convert(f"{name} Acmi.docx", f"{name} Acmi.pdf")
@@ -70,7 +71,6 @@ def acmi():
     os.remove(f"{name} Acmi.docx")
     print("ACC Finished...")
 
-    time.sleep(10)
 
 def chaparral():
     os.getcwd()
@@ -82,20 +82,18 @@ def chaparral():
     email = str(tab_lookup.acell("E2").value)
     quantity = str(tab_lookup.acell("B10").value)
 
-    doc = DocxTemplate(r"Forms\chaparral.docx")
+    doc = DocxTemplate(r"Forms\\\chaparral.docx")
     context = {'date': date, 'name': name, 'phone': phone,
                'email': email, 'address': address, 'quantity': quantity}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\\Users" + "\\" + user + "\\\Downloads")
     doc.save(f"{name} Chaparral.docx")
 
     convert(f"{name} Chaparral.docx", f"{name} Chaparral.pdf")
 
     os.remove(f"{name} Chaparral.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def cibolo():
     os.getcwd()
@@ -106,21 +104,18 @@ def cibolo():
     phone = str(tab_lookup.acell("F2").value)
     email = str(tab_lookup.acell("E2").value)
 
-    doc = DocxTemplate(r"Forms\cibolo.docx")
+    doc = DocxTemplate(r"Forms\\\cibolo.docx")
     context = {'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\\Users" + "\\" + user + "\\\Downloads")
     doc.save(f"{name} Cibolo.docx")
 
     convert(f"{name} Cibolo.docx", f"{name} Cibolo.pdf")
 
-    time.sleep(3)
     os.remove(f"{name} Cibolo.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def first_colony():
     os.getcwd()
@@ -133,21 +128,19 @@ def first_colony():
     phone = str(tab_lookup.acell("F2").value)
     email = str(tab_lookup.acell("E2").value)
 
-    doc = DocxTemplate(r"Forms\first_colony.docx")
+    doc = DocxTemplate(r"Forms\\\first_colony.docx")
     context = {'date': date, 'name': name, 'city': city,
                'phone': phone, 'email': email, 'address': address,
                'zip_code': zip_code}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\\Users" + "\\" + user + "\\\Downloads")
     doc.save(f"{name} First Colony.docx")
 
     convert(f"{name} First Colony.docx", f"{name} First Colony.pdf")
 
     os.remove(f"{name} First Colony.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def fsr():
     os.getcwd()
@@ -162,21 +155,19 @@ def fsr():
     phone = str(tab_lookup.acell("F2").value)
     email = str(tab_lookup.acell("E2").value)
 
-    doc = DocxTemplate(r"Forms\firstservice_acc.docx")
+    doc = DocxTemplate(r"Forms\\\firstservice_acc.docx")
     context = {'hoa_name': hoa_name, 'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address,
                'city': city, 'state': state, 'zip_code': zip_code}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\\Users" + "\\" + user + "\\\Downloads")
     doc.save(f"{name} FSR.docx")
 
     convert(f"{name} FSR.docx", f"{name} FSR.pdf")
 
     os.remove(f"{name} FSR.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def hoa_management():
     os.getcwd()
@@ -188,21 +179,19 @@ def hoa_management():
     email = str(tab_lookup.acell("E2").value)
     initial = str(tab_lookup.acell("F13").value)
 
-    doc = DocxTemplate(r"Forms\hoa_management.docx")
+    doc = DocxTemplate(r"Forms\\\hoa_management.docx")
     context = {'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address,
                'initial': initial}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\\Users" + "\\" + user + "\\\Downloads")
     doc.save(f"{name} Hoa Management.docx")
 
     convert(f"{name} Hoa Management.docx", f"{name} Hoa Management.pdf")
 
     os.remove(f"{name} Hoa Management.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def king_management():
     os.getcwd()
@@ -213,20 +202,18 @@ def king_management():
     phone = str(tab_lookup.acell("F2").value)
     email = str(tab_lookup.acell("E2").value)
 
-    doc = DocxTemplate(r"Forms\king_management.docx")
+    doc = DocxTemplate(r"Forms\\\king_management.docx")
     context = {'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\\Users" + "\\" + user + "\\\Downloads")
     doc.save(f"{name} King Management.docx")
 
     convert(f"{name} King Management.docx", f"{name} King Management.pdf")
 
     os.remove(f"{name} King Management.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def pamco():
     os.getcwd()
@@ -237,20 +224,18 @@ def pamco():
 
     email = str(tab_lookup.acell("E2").value)
 
-    doc = DocxTemplate(r"Forms\pamco.docx")
+    doc = DocxTemplate(r"Forms\\pamco.docx")
     context = {'date': date, 'name': name,
                'email': email, 'address': address}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\Users" + "\\" + user + "\\Downloads")
     doc.save(f"{name} Pamco.docx")
 
     convert(f"{name} Pamco.docx", f"{name} Pamco.pdf")
 
     os.remove(f"{name} Pamco.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def prestige():
     os.getcwd()
@@ -261,20 +246,18 @@ def prestige():
     address = str(tab_lookup.acell("B13").value)
     phone = str(tab_lookup.acell("F2").value)
 
-    doc = DocxTemplate(r"Forms\prestige.docx")
+    doc = DocxTemplate(r"Forms\\prestige.docx")
     context = {'hoa_name': hoa_name, 'date': date, 'name': name,
                'phone': phone, 'address': address}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\Users" + "\\" + user + "\\Downloads")
     doc.save(f"{name} Prestige.docx")
 
     convert(f"{name} Prestige.docx", f"{name} Prestige.pdf")
 
     os.remove(f"{name} Prestige.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def sg():
     os.getcwd()
@@ -284,20 +267,18 @@ def sg():
     phone = str(tab_lookup.acell("F2").value)
     email = str(tab_lookup.acell("E2").value)
 
-    doc = DocxTemplate(r"Forms\sg.docx")
+    doc = DocxTemplate(r"Forms\\sg.docx")
     context = {'name': name,
                'phone': phone, 'email': email, 'address': address}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\Users" + "\\" + user + "\\Downloads")
     doc.save(f"{name} SG-2.docx")
 
     convert(f"{name} SG-2.docx", f"{name} SG-2.pdf")
 
     os.remove(f"{name} SG-2.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def stillwater():
     os.getcwd()
@@ -308,20 +289,18 @@ def stillwater():
     phone = str(tab_lookup.acell("F2").value)
     email = str(tab_lookup.acell("E2").value)
 
-    doc = DocxTemplate(r"Forms\stillwater.docx")
+    doc = DocxTemplate(r"Forms\\stillwater.docx")
     context = {'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\Users" + "\\" + user + "\\Downloads")
     doc.save(f"{name} Stillwater.docx")
 
     convert(f"{name} Stillwater.docx", f"{name} Stillwater.pdf")
 
     os.remove(f"{name} Stillwater.docx")
-    print("ACC Finished...")
-
-    time.sleep(10)
+    print("ACC Finished...") 
 
 def woodlands():
     os.getcwd()
@@ -332,20 +311,18 @@ def woodlands():
     phone = str(tab_lookup.acell("F2").value)
     email = str(tab_lookup.acell("E2").value)
 
-    doc = DocxTemplate(r"Forms\woodlands.docx")
+    doc = DocxTemplate(r"Forms\\woodlands.docx")
     context = {'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\Users" + "\\" + user + "\\Downloads")
     doc.save(f"{name} Woodlands.docx")
 
     convert(f"{name} Woodlands.docx", f"{name} Woodlands.pdf")
 
     os.remove(f"{name} Woodlands.docx")
     print("ACC Finished...")
-
-    time.sleep(10)
 
 def choose_again():
     print(f" \n\n Invalid input, please copy and paste or enter exactly \n\n")
