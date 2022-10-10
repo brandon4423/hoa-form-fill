@@ -38,13 +38,13 @@ def black_hawk():
     phone = str(tab_lookup.acell("F2").value)
     email = str(tab_lookup.acell("E2").value)
 
-    doc = DocxTemplate(r"Forms\black_hawk.docx")
+    doc = DocxTemplate(r"Forms\\black_hawk.docx")
     context = {'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address,
                'zip_code': zip_code}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\Users" + "\\" + os.getlogin() + "\\Downloads")
     doc.save(f"{name} Black Hawk.docx")
 
     convert(f"{name} Black Hawk.docx", f"{name} Black Hawk.pdf")
@@ -63,12 +63,12 @@ def pamco():
 
     email = str(tab_lookup.acell("E2").value)
 
-    doc = DocxTemplate(r"Forms\pamco.docx")
+    doc = DocxTemplate(r"Forms\\pamco.docx")
     context = {'date': date, 'name': name,
                'email': email, 'address': address}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\Users" + "\\" + os.getlogin() + "\\Downloads")
     doc.save(f"{name} Pamco.docx")
 
     convert(f"{name} Pamco.docx", f"{name} Pamco.pdf")
@@ -87,16 +87,16 @@ def steiner():
     phone = str(tab_lookup.acell("F2").value)
     email = str(tab_lookup.acell("E2").value)
 
-    doc = DocxTemplate(r"Forms\steiner.docx")
+    doc = DocxTemplate(r"Forms\\steiner.docx")
     context = {'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
-    doc.save(f"{name} Steiner.docx")
+    os.chdir(r"C:\\Users" + "\\" + os.getlogin() + "\\Downloads")
+    doc.save(f"Steiner.docx")
 
     convert(f"{name} Steiner.docx", f"{name} Steiner.pdf")
-
+    
     os.remove(f"{name} Steiner.docx")
     print("ACC Finished...")
 
@@ -112,13 +112,13 @@ def sun_city():
     email = str(tab_lookup.acell("E2").value)
     initial = str(tab_lookup.acell("F13").value)
 
-    doc = DocxTemplate(r"Forms\sun_city.docx")
+    doc = DocxTemplate(r"Forms\\sun_city.docx")
     context = {'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address,
                'initial': initial}
 
     doc.render(context)
-    os.chdir(r"C:\Users" + "\\" + os.getlogin() + "\Downloads")
+    os.chdir(r"C:\\Users" + "\\" + os.getlogin() + "\\Downloads")
     doc.save(f"{name} Sun City.docx")
 
     convert(f"{name} Sun City.docx", f"{name} Sun City.pdf")
