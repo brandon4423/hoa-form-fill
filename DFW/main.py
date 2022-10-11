@@ -49,7 +49,7 @@ def nabr():
 
 def changeid():
     update_id = input(f"What is the Sunrise ID: ")
-    sunrise_id = tab_lookup.update_acell("H2", update_id)
+    tab_lookup.update_acell("H2", update_id)
     acc()
 
 def choose_again():
