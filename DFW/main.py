@@ -14,13 +14,13 @@ def acc():
     sunrise_id = str(tab_lookup.acell("H2").value)
 
     print(f"SUNRISE ID: {sunrise_id}")
-    forms = ['NABR']
+    forms = ['NABR', 'SRID']
     print(f"ATX Forms: \n \n{forms} \n")
     answer = input(f"Please choose the form you want: ")
 
     if answer == 'NABR':
         nabr()
-    elif answer == 'ID':
+    elif answer == 'SRID':
         changeid()
     else:
         choose_again()
@@ -48,7 +48,9 @@ def nabr():
     print("ACC Finished...")
 
 def changeid():
-    pass
+    update_id = input(f"What is the Sunrise ID: ")
+    sunrise_id = tab_lookup.update_acell("H2", update_id)
+    acc()
 
 def choose_again():
     print(f" \n\n Invalid input, please copy and paste or enter exactly \n\n")
