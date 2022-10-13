@@ -15,7 +15,7 @@ def acc():
 
     print(f"SUNRISE ID: {sunrise_id}")
     forms = ['ACMI', 'Chaparral', 'Cibolo', 'First Colony', 'First Service', 'HOA Management',
-             'King Management', 'PAMCO', 'Prestige', 'SG 2', 'Stillwater', 'Woodlands']
+             'King Management', 'PAMCO', 'Prestige', 'SG 2', 'Stillwater', 'Woodlands', 'SRID']
     print(f"SATX & HOU Forms: \n \n{forms} \n")
     answer = input(f"Please choose the form you want: ")
 
@@ -43,6 +43,8 @@ def acc():
         stillwater()
     elif answer == 'Woodlands':
         woodlands()
+    elif answer == 'SRID':
+        changeid()
     elif answer == 'User':
         print(os.getlogin())
     else:
@@ -323,6 +325,11 @@ def woodlands():
 
     os.remove(f"{name} Woodlands.docx")
     print("ACC Finished...")
+
+def changeid():
+    update_id = input(f"What is the Sunrise ID: ")
+    tab_lookup.update_acell("H2", update_id)
+    acc()
 
 def choose_again():
     print(f" \n\n Invalid input, please copy and paste or enter exactly \n\n")

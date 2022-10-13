@@ -14,7 +14,7 @@ def acc():
     sunrise_id = str(tab_lookup.acell("H2").value)
 
     print(f"SUNRISE ID: {sunrise_id}")
-    forms = ['Black Hawk', 'PAMCO', 'Steiner', 'Sun City']
+    forms = ['Black Hawk', 'PAMCO', 'Steiner', 'Sun City', 'SRID']
     print(f"ATX Forms: \n \n{forms} \n")
     answer = input(f"Please choose the form you want: ")
 
@@ -26,6 +26,8 @@ def acc():
         steiner()
     elif answer == 'Sun City':
         sun_city()
+    elif answer == 'SRID':
+        changeid()
     else:
         choose_again()
 
@@ -119,6 +121,11 @@ def sun_city():
 
     os.remove(f"{name} Sun City.docx")
     print("ACC Finished...")
+
+def changeid():
+    update_id = input(f"What is the Sunrise ID: ")
+    tab_lookup.update_acell("H2", update_id)
+    acc()
 
 def choose_again():
     print(f" \n\n Invalid input, please copy and paste or enter exactly \n\n")

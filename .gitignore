@@ -9,3 +9,5 @@ ATX/.idea/misc.xml
 ATX/.idea/modules.xml
 DFW/Service/creds.py
 DFW/Service/service_account.json
+Service/creds.py
+Service/service_account.json
