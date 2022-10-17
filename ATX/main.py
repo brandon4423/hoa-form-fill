@@ -5,14 +5,32 @@ import os
 
 login = gspread.service_account(filename="Service\service_account.json")
 sheet_name = login.open("HOA")
+worksheet = sheet_name.worksheet("SEARCH_TOOL")
+values = worksheet.get_values("B1:F13")
 
-tab_lookup = sheet_name.worksheet("Maya")
+sunrise_id = values[1][0]
+first_name = values[1][1]
+second_name = values[1][2]
+email = values[1][3]
+phone = values[1][4]
+street = values[3][0]
+city = values[3][1]
+state = values[3][2]
+zip_code = values[3][3]
+hoa_name = values[6][0]
+hoa_email = values[6][1]
+name = values[6][2]
+quantity = values [9][0]
+type = values[9][1]
+pw = values [9][2]
+address = values[12][0]
+license_number = values[12][1]
+date = values[12][2]
+initials = values[12][4]
 
 user = os.getlogin()
 
 def acc():
-    sunrise_id = str(tab_lookup.acell("H2").value)
-
     print(f"SUNRISE ID: {sunrise_id}")
     forms = ['Black Hawk', 'PAMCO', 'Steiner', 'Sun City', 'SRID']
     print(f"ATX Forms: \n \n{forms} \n")
@@ -33,13 +51,6 @@ def acc():
 
 def black_hawk():
 
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    zip_code = str(tab_lookup.acell("E4").value)
-    phone = str(tab_lookup.acell("F2").value)
-    email = str(tab_lookup.acell("E2").value)
-
     doc = DocxTemplate(r"Forms\\black_hawk.docx")
     context = {'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address,
@@ -57,12 +68,6 @@ def black_hawk():
 def pamco():
     os.getcwd()
 
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-
-    email = str(tab_lookup.acell("E2").value)
-
     doc = DocxTemplate(r"Forms\\pamco.docx")
     context = {'date': date, 'name': name,
                'email': email, 'address': address}
@@ -78,12 +83,6 @@ def pamco():
 
 def steiner():
     os.getcwd()
-
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    phone = str(tab_lookup.acell("F2").value)
-    email = str(tab_lookup.acell("E2").value)
 
     doc = DocxTemplate(r"Forms\\steiner.docx")
     context = {'date': date, 'name': name,
@@ -101,17 +100,10 @@ def steiner():
 def sun_city():
     os.getcwd()
 
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    phone = str(tab_lookup.acell("F2").value)
-    email = str(tab_lookup.acell("E2").value)
-    initial = str(tab_lookup.acell("F13").value)
-
     doc = DocxTemplate(r"Forms\\sun_city.docx")
     context = {'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address,
-               'initial': initial}
+               'initial': initials}
 
     doc.render(context)
     os.chdir(r"C:\\Users" + "\\" + user + "\\Downloads")
@@ -124,7 +116,7 @@ def sun_city():
 
 def changeid():
     update_id = input(f"What is the Sunrise ID: ")
-    tab_lookup.update_acell("H2", update_id)
+    worksheet.update_acell("H2", update_id)
     acc()
 
 def choose_again():

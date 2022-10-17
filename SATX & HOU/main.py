@@ -5,14 +5,32 @@ import os
 
 login = gspread.service_account(filename="Service\service_account.json")
 sheet_name = login.open("HOA")
+worksheet = sheet_name.worksheet("SEARCH_TOOL")
+values = worksheet.get_values("B1:F13")
 
-tab_lookup = sheet_name.worksheet("SEARCH_TOOL")
+sunrise_id = values[1][0]
+first_name = values[1][1]
+second_name = values[1][2]
+email = values[1][3]
+phone = values[1][4]
+street = values[3][0]
+city = values[3][1]
+state = values[3][2]
+zip_code = values[3][3]
+hoa_name = values[6][0]
+hoa_email = values[6][1]
+name = values[6][2]
+quantity = values [9][0]
+type = values[9][1]
+pw = values [9][2]
+address = values[12][0]
+license_number = values[12][1]
+date = values[12][2]
+initials = values[12][4]
 
 user = os.getlogin()
 
 def acc():
-    sunrise_id = str(tab_lookup.acell("H2").value)
-
     print(f"SUNRISE ID: {sunrise_id}")
     forms = ['ACMI', 'Chaparral', 'Cibolo', 'First Colony', 'First Service', 'HOA Management',
              'King Management', 'PAMCO', 'Prestige', 'SG 2', 'Stillwater', 'Woodlands', 'SRID']
@@ -53,13 +71,6 @@ def acc():
 def acmi():
     os.getcwd()
 
-    hoa_name = str(tab_lookup.acell("B7").value)
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    phone = str(tab_lookup.acell("F2").value)
-    email = str(tab_lookup.acell("E2").value)
-
     doc = DocxTemplate(r"Forms\\acmi.docx")
     context = {'hoa_name': hoa_name, 'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address}
@@ -77,13 +88,6 @@ def acmi():
 def chaparral():
     os.getcwd()
 
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    phone = str(tab_lookup.acell("F2").value)
-    email = str(tab_lookup.acell("E2").value)
-    quantity = str(tab_lookup.acell("B10").value)
-
     doc = DocxTemplate(r"Forms\\\chaparral.docx")
     context = {'date': date, 'name': name, 'phone': phone,
                'email': email, 'address': address, 'quantity': quantity}
@@ -100,12 +104,6 @@ def chaparral():
 def cibolo():
     os.getcwd()
 
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    phone = str(tab_lookup.acell("F2").value)
-    email = str(tab_lookup.acell("E2").value)
-
     doc = DocxTemplate(r"Forms\\\cibolo.docx")
     context = {'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address}
@@ -121,14 +119,6 @@ def cibolo():
 
 def first_colony():
     os.getcwd()
-
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    city = str(tab_lookup.acell("C4").value)
-    zip_code = str(tab_lookup.acell("E4").value)
-    phone = str(tab_lookup.acell("F2").value)
-    email = str(tab_lookup.acell("E2").value)
 
     doc = DocxTemplate(r"Forms\\\first_colony.docx")
     context = {'date': date, 'name': name, 'city': city,
@@ -147,16 +137,6 @@ def first_colony():
 def fsr():
     os.getcwd()
 
-    hoa_name = str(tab_lookup.acell("B7").value)
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    city = str(tab_lookup.acell("C4").value)
-    state = str(tab_lookup.acell("D4").value)
-    zip_code = str(tab_lookup.acell("E4").value)
-    phone = str(tab_lookup.acell("F2").value)
-    email = str(tab_lookup.acell("E2").value)
-
     doc = DocxTemplate(r"Forms\\\firstservice_acc.docx")
     context = {'hoa_name': hoa_name, 'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address,
@@ -174,17 +154,10 @@ def fsr():
 def hoa_management():
     os.getcwd()
 
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    phone = str(tab_lookup.acell("F2").value)
-    email = str(tab_lookup.acell("E2").value)
-    initial = str(tab_lookup.acell("F13").value)
-
     doc = DocxTemplate(r"Forms\\\hoa_management.docx")
     context = {'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address,
-               'initial': initial}
+               'initial': initials}
 
     doc.render(context)
     os.chdir(r"C:\\\Users" + "\\" + user + "\\\Downloads")
@@ -197,12 +170,6 @@ def hoa_management():
 
 def king_management():
     os.getcwd()
-
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    phone = str(tab_lookup.acell("F2").value)
-    email = str(tab_lookup.acell("E2").value)
 
     doc = DocxTemplate(r"Forms\\\king_management.docx")
     context = {'date': date, 'name': name,
@@ -220,12 +187,6 @@ def king_management():
 def pamco():
     os.getcwd()
 
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-
-    email = str(tab_lookup.acell("E2").value)
-
     doc = DocxTemplate(r"Forms\\pamco.docx")
     context = {'date': date, 'name': name,
                'email': email, 'address': address}
@@ -241,12 +202,6 @@ def pamco():
 
 def prestige():
     os.getcwd()
-
-    hoa_name = str(tab_lookup.acell("B7").value)
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    phone = str(tab_lookup.acell("F2").value)
 
     doc = DocxTemplate(r"Forms\\prestige.docx")
     context = {'hoa_name': hoa_name, 'date': date, 'name': name,
@@ -264,11 +219,6 @@ def prestige():
 def sg():
     os.getcwd()
 
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    phone = str(tab_lookup.acell("F2").value)
-    email = str(tab_lookup.acell("E2").value)
-
     doc = DocxTemplate(r"Forms\\sg.docx")
     context = {'name': name,
                'phone': phone, 'email': email, 'address': address}
@@ -284,12 +234,6 @@ def sg():
 
 def stillwater():
     os.getcwd()
-
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    phone = str(tab_lookup.acell("F2").value)
-    email = str(tab_lookup.acell("E2").value)
 
     doc = DocxTemplate(r"Forms\\stillwater.docx")
     context = {'date': date, 'name': name,
@@ -307,12 +251,6 @@ def stillwater():
 def woodlands():
     os.getcwd()
 
-    date = str(tab_lookup.acell("H7").value)
-    name = str(tab_lookup.acell("D7").value)
-    address = str(tab_lookup.acell("B13").value)
-    phone = str(tab_lookup.acell("F2").value)
-    email = str(tab_lookup.acell("E2").value)
-
     doc = DocxTemplate(r"Forms\\woodlands.docx")
     context = {'date': date, 'name': name,
                'phone': phone, 'email': email, 'address': address}
@@ -328,7 +266,7 @@ def woodlands():
 
 def changeid():
     update_id = input(f"What is the Sunrise ID: ")
-    tab_lookup.update_acell("H2", update_id)
+    worksheet.update_acell("H2", update_id)
     acc()
 
 def choose_again():
